@@ -11,7 +11,7 @@ namespace TPHSampleEntityFramework6
 
             using (var context = new AppContext(conn))
             {
-                var pessoas = context.Pessoas.ToList();
+                var pessoas = context.Disciplinas.ToList();
             }
         }
     }

@@ -8,6 +8,16 @@ namespace TPHSampleEntityFramework6.Migrations
         public override void Up()
         {
             CreateTable(
+                "dbo.Disciplinas",
+                c => new
+                    {
+                        Id = c.Guid(nullable: false),
+                        Nome = c.String(),
+                        CapacidadeAlunos = c.Long(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
                 "dbo.Pessoas",
                 c => new
                     {
@@ -25,27 +35,17 @@ namespace TPHSampleEntityFramework6.Migrations
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
-                "dbo.Disciplinas",
+                "dbo.AlunoDisciplinas",
                 c => new
                     {
-                        Id = c.Guid(nullable: false),
-                        Nome = c.String(),
-                        CapacidadeAlunos = c.Long(nullable: false),
-                    })
-                .PrimaryKey(t => t.Id);
-            
-            CreateTable(
-                "dbo.DisciplinaAlunoes",
-                c => new
-                    {
-                        Disciplina_Id = c.Guid(nullable: false),
                         Aluno_Id = c.Guid(nullable: false),
+                        Disciplina_Id = c.Guid(nullable: false),
                     })
-                .PrimaryKey(t => new { t.Disciplina_Id, t.Aluno_Id })
-                .ForeignKey("dbo.Disciplinas", t => t.Disciplina_Id, cascadeDelete: true)
+                .PrimaryKey(t => new { t.Aluno_Id, t.Disciplina_Id })
                 .ForeignKey("dbo.Pessoas", t => t.Aluno_Id, cascadeDelete: true)
-                .Index(t => t.Disciplina_Id)
-                .Index(t => t.Aluno_Id);
+                .ForeignKey("dbo.Disciplinas", t => t.Disciplina_Id, cascadeDelete: true)
+                .Index(t => t.Aluno_Id)
+                .Index(t => t.Disciplina_Id);
             
             CreateTable(
                 "dbo.ProfessorDisciplinas",
@@ -66,16 +66,16 @@ namespace TPHSampleEntityFramework6.Migrations
         {
             DropForeignKey("dbo.ProfessorDisciplinas", "Disciplina_Id", "dbo.Disciplinas");
             DropForeignKey("dbo.ProfessorDisciplinas", "Professor_Id", "dbo.Pessoas");
-            DropForeignKey("dbo.DisciplinaAlunoes", "Aluno_Id", "dbo.Pessoas");
-            DropForeignKey("dbo.DisciplinaAlunoes", "Disciplina_Id", "dbo.Disciplinas");
+            DropForeignKey("dbo.AlunoDisciplinas", "Disciplina_Id", "dbo.Disciplinas");
+            DropForeignKey("dbo.AlunoDisciplinas", "Aluno_Id", "dbo.Pessoas");
             DropIndex("dbo.ProfessorDisciplinas", new[] { "Disciplina_Id" });
             DropIndex("dbo.ProfessorDisciplinas", new[] { "Professor_Id" });
-            DropIndex("dbo.DisciplinaAlunoes", new[] { "Aluno_Id" });
-            DropIndex("dbo.DisciplinaAlunoes", new[] { "Disciplina_Id" });
+            DropIndex("dbo.AlunoDisciplinas", new[] { "Disciplina_Id" });
+            DropIndex("dbo.AlunoDisciplinas", new[] { "Aluno_Id" });
             DropTable("dbo.ProfessorDisciplinas");
-            DropTable("dbo.DisciplinaAlunoes");
-            DropTable("dbo.Disciplinas");
+            DropTable("dbo.AlunoDisciplinas");
             DropTable("dbo.Pessoas");
+            DropTable("dbo.Disciplinas");
         }
     }
 }

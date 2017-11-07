@@ -53,11 +53,12 @@
     <Compile Include="Aluno.cs" />
     <Compile Include="AppContext.cs" />
     <Compile Include="Disciplina.cs" />
-    <Compile Include="Migrations\201711051831200_InitialMigration.cs" />
-    <Compile Include="Migrations\201711051831200_InitialMigration.Designer.cs">
-      <DependentUpon>201711051831200_InitialMigration.cs</DependentUpon>
+    <Compile Include="Migrations\201711072333171_InitialMigration.cs" />
+    <Compile Include="Migrations\201711072333171_InitialMigration.Designer.cs">
+      <DependentUpon>201711072333171_InitialMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="MyCustomDBInitializer.cs" />
     <Compile Include="Pessoa.cs" />
     <Compile Include="Professor.cs" />
     <Compile Include="Program.cs" />
@@ -68,8 +69,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201711051831200_InitialMigration.resx">
-      <DependentUpon>201711051831200_InitialMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201711072333171_InitialMigration.resx">
+      <DependentUpon>201711072333171_InitialMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

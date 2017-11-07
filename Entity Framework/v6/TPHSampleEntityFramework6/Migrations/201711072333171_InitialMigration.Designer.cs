@@ -13,7 +13,7 @@ namespace TPHSampleEntityFramework6.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201711051831200_InitialMigration"; }
+            get { return "201711072333171_InitialMigration"; }
         }
         
         string IMigrationMetadata.Source
