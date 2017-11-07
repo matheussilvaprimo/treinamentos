@@ -6,9 +6,9 @@ namespace TPHSampleEntityFramework6
     {
         public DbSet<Pessoa> Pessoas { get; set; }
 
-        public AppContext()
+        public AppContext(string conn) : base(conn)
         {
-            Database.CreateIfNotExists();
+            Database.SetInitializer(new CreateDatabaseIfNotExists<AppContext>());
         }
     }
 }
